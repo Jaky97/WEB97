@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formulař</title>
+</head>
+<body>
+    <h1>Formulář</h1>
+    <formu> 
+        <label for="username">Jméno:</label>
+        <input id= "username" type="text" name="jmeno" > 
+        <br />
+        <label for="email">Email:
+            <input id= "email" type="email" name="email" >
+        </label>
+        <br />
+        <label for="heslo">Heslo:
+            <input id= "heslo" type="password" name="password" >
+        </label>
+        <fieldset>
+            <legend>Pohlaví</legend>
+            <input type="radio" id="muz" name="pohlavi" value="muz"><label for="muz">Muž</label>
+            <input type="checkbox" id="nevim" name="pohlavi" value="nevim"><label for="nevim">Nevím</label>
+            <br />
+            <input type="radio" id="zena" name="pohlavi" value="zena"><label for="zena">Žena</label>
+            <br />
+            <input type="radio" id="jine" name="pohlavi" value="jine"><label for="jine">Jiné</label>
+        </fieldset>
+        <br />
+        <input type="submit" value="Odeslat" />
+    </formu>
+</body>
+</html>
