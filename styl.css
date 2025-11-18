@@ -1,0 +1,49 @@
+body {
+    background-color: #1a1a2e;
+}
+@keyframes orbit {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+.sun{
+    width: 150px;
+    height: 150px;
+    background-color: gold;
+    box-shadow: 0 0 100px gold;
+    border-radius: 50%;
+    position: absolute;
+    /* Vycentruje div(container) top a left centruje leví horní roh na střed stránky */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.mercur{
+    width: 80px;
+    height: 80px;
+    background-color: rgb(207, 100, 0);
+    border-radius: 50%;
+    position: absolute;
+}
+.mercur-orbit{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: orbit 10s linear infinite;
+}
+.rocket{
+    width: 20px;
+    height: 25px;
+    background-color: silver;
+    position: absolute;
+    top: -20%;
+    left: -20%;
+    animation: orbit 10s linear infinite;
+
+}
