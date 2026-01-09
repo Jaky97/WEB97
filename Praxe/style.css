@@ -1,0 +1,44 @@
+body{
+    background-color: black;
+    overflow: hidden;
+}
+h1{
+    text-align: center;
+    border-radius: 25;
+    background-color: #d2d2d2;
+}
+
+.game{
+    width: 500px;
+    overflow: auto;
+    background: #d2d2d2;
+    color: #2f2f2f;
+    display: inline-block;
+}
+
+h2{
+    text-align: center;
+}
+.rows{
+    text-align: center;
+    display: inline-block;
+}
+
+.rows img{
+    width: 25%;
+    overflow: auto;
+    
+}
+
+.banner{
+    width: 110%;
+    animation: float 2s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(-50px);
+  }
