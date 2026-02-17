@@ -1,15 +1,13 @@
 body {
-    background-image: url('image.png');
+    background-image: url('images/image.png');
     background-repeat: no-repeat;
     background-size: auto;
     background-attachment: fixed;
     background-position: top center;
     padding: 0px;
     margin: 0px;
-    
 }
 .top_bar{
-    
     margin-top: -16px;
     padding: 0;
     background-color: #009DFF;
@@ -23,4 +21,19 @@ body {
 }
 .top_bar li:hover{
     background-color: #007ACC;
+}
+.ad{
+    display: none;
+    width: 10em;
+    height: 10em;
+}
+.popup{
+    background-color: #87878755
+
+}
+.ad_image{
+    width: 10em;
+}
+.popup:hover{
+    background-color: #878787;
 }
