@@ -1,0 +1,15 @@
+h1{
+    text-align: center;
+}
+
+.radek{
+    display: inline-block;
+    border: 5px solid #000;
+    width: auto;
+    height: auto;
+}
+
+#main{
+    size: auto;
+    border: 10px solid #000;
+}

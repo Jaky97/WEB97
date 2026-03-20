@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPV4 Adresy a subnety</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>IPV4 ADRESY A SUBNETY</h1>
+    <table class="main">
+        <tr>
+            <td class="still">ip adresa: </td>
+            <td class="in"><input type="text" id="ip-input" class="in" placeholder="např. 192.168.1.1"></td>
+        </tr>
+        <tr>
+            <td class="still">maska sítě (cidr): </td>
+            <td class="in">
+                <select id="cidr-select">
+                    <option value="0">0.0.0.0 (/0)</option>
+                    <option value="1">128.0.0.0 (/1)</option>
+                    <option value="2">192.0.0.0 (/2)</option>
+                    <option value="3">224.0.0.0 (/3)</option>
+                    <option value="4">240.0.0.0 (/4)</option>
+                    <option value="5">248.0.0.0 (/5)</option>
+                    <option value="6">252.0.0.0 (/6)</option>
+                    <option value="7">254.0.0.0 (/7)</option>
+                    <option value="8">255.0.0.0 (/8)</option>
+                    <option value="9">255.128.0.0 (/9)</option>
+                    <option value="10">255.192.0.0 (/10)</option>
+                    <option value="11">255.224.0.0 (/11)</option>
+                    <option value="12">255.240.0.0 (/12)</option>
+                    <option value="13">255.248.0.0 (/13)</option>
+                    <option value="14">255.252.0.0 (/14)</option>
+                    <option value="15">255.254.0.0 (/15)</option>
+                    <option value="16">255.255.0.0 (/16)</option>
+                    <option value="17">255.255.128.0 (/17)</option>
+                    <option value="18">255.255.192.0 (/18)</option>
+                    <option value="19">255.255.224.0 (/19)</option>
+                    <option value="20">255.255.240.0 (/20)</option>
+                    <option value="21">255.255.248.0 (/21)</option>
+                    <option value="22">255.255.252.0 (/22)</option>
+                    <option value="23">255.255.254.0 (/23)</option>
+                    <option value="24" selected>255.255.255.0 (/24)</option>
+                    <option value="25">255.255.255.128 (/25)</option>
+                    <option value="26">255.255.255.192 (/26)</option>
+                    <option value="27">255.255.255.224 (/27)</option>
+                    <option value="28">255.255.255.240 (/28)</option>
+                    <option value="29">255.255.255.248 (/29)</option>
+                    <option value="30">255.255.255.252 (/30)</option>
+                    <option value="31">255.255.255.254 (/31)</option>
+                    <option value="32">255.255.255.255 (/32)</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="still">adresa sítě: </td>
+            <td class="tisk" id="out-sit"></td>
+        </tr>
+        <tr>
+            <td class="still">třída ip adresy: </td>
+            <td class="tisk" id="out-trida"></td>
+        </tr>
+        <tr>
+            <td class="still">broadcast adresa: </td>
+            <td class="tisk" id="out-broadcast"></td>
+        </tr>
+        <tr>
+            <td class="still">celkem adres v síti:</td>
+            <td class="tisk" id="out-celkem"></td>
+        </tr>
+        <tr>
+            <td class="still">z toho použitelných: </td>
+            <td class="tisk" id="out-pouzitelnych"></td>
+        </tr>
+        <tr>
+            <td class="still">první použitelná ip adresa: </td>
+            <td class="tisk" id="out-prvni"></td>
+        </tr>
+        <tr>
+            <td class="still">poslední použitelná ip adresa: </td>
+            <td class="tisk" id="out-posledni"></td>
+        </tr>
+    </table>
+    <button class="tlacitko" onclick="prepocitat()">Přepočítat</button>
+
+    <script src="script.js"></script>
+</body>
+</html>

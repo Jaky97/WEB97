@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const overlay = document.getElementById('security-warning');
 
   // Zobraz warning po 3s
-  setTimeout(() => {
+  
     if (overlay) overlay.classList.add('show');
   }, 3000);
 
@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
       if (overlay) overlay.classList.remove('show');
     });
   }
-});
+
 
 // ===== POPUP ADS =====
 const popupData = [
