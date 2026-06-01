@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01 – HTML kostra s canvasem</title>
+    <style>
+        /* Základní reset a layout stránky */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a2e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            color: #eee;
+        }
+
+        h1 {
+            margin-bottom: 16px;
+            font-size: 1.4rem;
+            color: #a0c4ff;
+        }
+
+        /* Canvas – plátno pro kreslení */
+        #platno {
+            background-color: #16213e;
+            border: 2px solid #4a90d9;
+            border-radius: 8px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>01 – HTML kostra s canvasem</h1>
+
+    <!--
+        Element <canvas> slouží jako plátno pro 2D (nebo 3D) kreslení pomocí JavaScriptu.
+        Atributy width a height udávají rozměry plátna v pixelech.
+    -->
+    <canvas id="platno" width="600" height="400"></canvas>
+
+</body>
+</html>
+ 

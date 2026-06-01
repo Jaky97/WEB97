@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04 – Kruh jako třída (OOP)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a2e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            color: #eee;
+            gap: 12px;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            color: #a0c4ff;
+        }
+
+        .hint {
+            font-size: 0.85rem;
+            color: #8899aa;
+            max-width: 620px;
+            text-align: center;
+        }
+
+        .hint code {
+            background: #223;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #f0c040;
+        }
+
+        #platno {
+            background-color: #16213e;
+            border: 2px solid #4a90d9;
+            border-radius: 8px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>04 – Kruh jako třída (OOP)</h1>
+
+    <canvas id="platno" width="600" height="400"></canvas>
+
+    <script>
+        // ── Třída Kruh ─────────────────────────────────────────────────────────
+        // Přechod na OOP: vlastnosti kruhu jsou zapouzdřeny v instanci třídy.
+        class Kruh {
+            /**
+             * @param {number} x      – vodorovná souřadnice středu
+             * @param {number} y      – svislá souřadnice středu
+             * @param {number} radius – poloměr kruhu
+             * @param {string} color  – CSS barva výplně
+             */
+            constructor(x, y, radius, color) {
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.color = color;
+            }
+
+            /**
+             * Nakreslí kruh na zadaný kontext plátna.
+             * @param {CanvasRenderingContext2D} ctx
+             */
+            draw(ctx) {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
+
+        const platno = document.getElementById("platno");
+        const ctx = platno.getContext("2d");
+
+        const k = new Kruh(50, 200, 30, "blue");
+        k.draw(ctx);
+        for (let i = 0; i < 5; i++) {
+            k.draw(ctx);
+            k.x += 70;
+        }
+    </script>
+
+</body>
+
+</html>

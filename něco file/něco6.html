@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06 – Animace (requestAnimationFrame)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a2e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            color: #eee;
+            gap: 12px;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            color: #a0c4ff;
+        }
+
+        .info {
+            font-size: 0.85rem;
+            color: #8899aa;
+        }
+
+        #platno {
+            background-color: #16213e;
+            border: 2px solid #4a90d9;
+            border-radius: 8px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>06 – Animace pomocí requestAnimationFrame</h1>
+    <p class="info">Kruh se pohybuje – ale po chvíli opustí plátno (to opravíme v dalším příkladu).</p>
+
+    <canvas id="platno" width="600" height="400"></canvas>
+
+    <script>
+        // ── Třída Kruh (stejná jako v 05-move.html) ───────────────────────────
+        class Kruh {
+            constructor(x, y, radius, color, dx, dy) {
+                this.x      = x;
+                this.y      = y;
+                this.radius = radius;
+                this.color  = color;
+                this.dx     = dx;
+                this.dy     = dy;
+            }
+
+            /** Posune kruh o dx, dy */
+            update() {
+                this.x += this.dx;
+                this.y += this.dy;
+            }
+
+            /** Nakreslí kruh */
+            draw(ctx) {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
+
+        // ── Hlavní kód ─────────────────────────────────────────────────────────
+        const platno = document.getElementById("platno");
+        const ctx = platno.getContext("2d");
+
+        const kruh = new Kruh(300, 200, 40, "royalblue", 3, 2);
+
+        /**
+         * Animační smyčka – tato funkce se opakovaně volá prohlížečem.
+         *
+         * Postup v každém snímku (frame):
+         *   1. Vymaž celé plátno (clearRect)
+         *   2. Přepočítej polohu (update)
+         *   3. Nakresli novou polohu (draw)
+         *   4. Požádej prohlížeč o zavolání v příštím snímku (requestAnimationFrame)
+         */
+        function animace() {
+            // 1) Vymazání plátna – bez toho by za kruhem zůstával „ocas"
+            ctx.clearRect(0, 0, platno.width, platno.height);
+
+            // 2) Přepočet pozice
+            kruh.update();
+
+            // 3) Vykreslení nové pozice
+            kruh.draw(ctx);
+
+            // 4) Naplánování dalšího snímku (~60× za sekundu)
+            requestAnimationFrame(animace);
+        }
+
+        // Spuštění animace
+        animace();
+    </script>
+
+</body>
+</html>
+ 

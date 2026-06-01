@@ -1,0 +1,265 @@
+/* ===================================================
+   Generátor hesel – style.css
+   Světlé barevné schéma, moderní a přehledný vzhled
+   =================================================== */
+
+/* --- Importované písmo z Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@400;600;700&display=swap');
+
+/* --- CSS proměnné (barevná paleta a styl) --- */
+:root {
+  --clr-bg:         #eef2f7;        /* Světlé pozadí stránky */
+  --clr-card:       #ffffff;        /* Bílá karta */
+  --clr-border:     #d8e0ea;        /* Jemný okraj */
+  --clr-text:       #1a2433;        /* Tmavý text */
+  --clr-muted:      #6b7a8d;        /* Tlumený popisek */
+  --clr-accent:     #2d9cdb;        /* Modrá akcentová barva */
+  --clr-accent-hov: #1a7bb8;        /* Hover stav tlačítka */
+  --clr-password:   #0f1923;        /* Barva textu hesla */
+
+  --radius-card:    18px;
+  --radius-input:   10px;
+  --radius-btn:     12px;
+
+  --shadow-card: 0 8px 32px rgba(45, 100, 160, 0.10),
+                 0 2px  8px rgba(0,   0,   0, 0.06);
+}
+
+/* --- Základní reset a box-model --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Tělo stránky: vycentrovaný layout --- */
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--clr-bg);
+  font-family: 'Sora', sans-serif;
+  color: var(--clr-text);
+  padding: 1.5rem;
+}
+
+/* ===================================================
+   Hlavní kontejner (karta)
+   =================================================== */
+.container {
+  background: var(--clr-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 2.5rem 2.75rem 2.25rem;
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* ===================================================
+   Nadpis
+   =================================================== */
+.title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--clr-text);
+  text-align: center;
+}
+
+/* ===================================================
+   Pole pro zobrazení hesla
+   =================================================== */
+.password-display {
+  width: 100%;
+  background: #f4f7fb;
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius-input);
+  padding: 0.9rem 1.25rem;
+  text-align: center;
+
+  /* Monospacové písmo pro čitelnost hesla */
+  font-family: 'DM Mono', monospace;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--clr-password);
+  word-break: break-all;
+
+  /* Plynulý přechod při aktualizaci hesla */
+  transition: background 0.25s ease, color 0.25s ease;
+  min-height: 3.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  user-select: all;           /* Umožní označit celé heslo jedním kliknutím */
+}
+
+/* Krátká animace "bliknutí" po vygenerování */
+.password-display.flash {
+  background: #dff0ff;
+  color: var(--clr-accent);
+}
+
+/* ===================================================
+   Sekce nastavení
+   =================================================== */
+.settings {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+/* Jeden řádek nastavení */
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+/* Popisek nalevo */
+.setting-label {
+  font-size: 0.95rem;
+  color: var(--clr-muted);
+  font-weight: 400;
+}
+
+/* ===================================================
+   Číselný vstup pro délku hesla
+   =================================================== */
+.length-input {
+  width: 80px;
+  padding: 0.4rem 0.65rem;
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius-input);
+  font-family: 'Sora', sans-serif;
+  font-size: 0.95rem;
+  color: var(--clr-text);
+  text-align: center;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Fokus na číselném vstupu */
+.length-input:focus {
+  border-color: var(--clr-accent);
+  box-shadow: 0 0 0 3px rgba(45, 156, 219, 0.18);
+}
+
+/* Skrytí šipek prohlížeče u number inputu */
+.length-input::-webkit-inner-spin-button,
+.length-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.length-input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* ===================================================
+   Checkbox (speciální znaky)
+   =================================================== */
+.checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--clr-border);
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+/* Stav: zaškrtnuto */
+.checkbox:checked {
+  background: var(--clr-accent);
+  border-color: var(--clr-accent);
+}
+
+/* Fajfka pomocí pseudo-elementu */
+.checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 7px;
+  height: 11px;
+  border: 2.5px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+/* Fokus na checkboxu */
+.checkbox:focus-visible {
+  outline: 3px solid rgba(45, 156, 219, 0.35);
+  outline-offset: 2px;
+}
+
+/* ===================================================
+   Tlačítko GENEROVAT
+   =================================================== */
+.btn-generate {
+  width: 100%;
+  padding: 0.85rem;
+  background: var(--clr-accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-btn);
+  font-family: 'Sora', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.12s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 14px rgba(45, 156, 219, 0.30);
+}
+
+/* Hover efekt – změna barvy pozadí */
+.btn-generate:hover {
+  background: var(--clr-accent-hov);
+  box-shadow: 0 6px 20px rgba(45, 156, 219, 0.40);
+}
+
+/* Stisknutí tlačítka */
+.btn-generate:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(45, 156, 219, 0.25);
+}
+
+/* Fokus na tlačítku */
+.btn-generate:focus-visible {
+  outline: 3px solid rgba(45, 156, 219, 0.45);
+  outline-offset: 3px;
+}
+
+/* ===================================================
+   Responsivita – malé obrazovky
+   =================================================== */
+@media (max-width: 480px) {
+  .container {
+    padding: 2rem 1.5rem 1.75rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .password-display {
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+  }
+}

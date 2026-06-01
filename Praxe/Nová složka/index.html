@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generátor hesel</title>
+  <!-- Odkaz na externí CSS soubor -->
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js"></script>
+</head>
+<body>
+  <main class="container">
+    <h1 class="title">Generátor hesel</h1>
+    <div class="password-display" id="passwordDisplay" aria-label="Vygenerované heslo" aria-live="polite">
+      A1#b2C3d4E~5
+    </div>
+    <div class="settings">
+      <label class="setting-row" for="passwordLength">
+        <span class="setting-label">Délka hesla:</span>
+        <input
+          type="number"
+          id="passwordLength"
+          class="length-input"
+          min="6"
+          max="24"
+          value="12"
+          aria-label="Délka hesla (6–24)"
+        />
+      </label>
+      <label class="setting-row" for="specialChars">
+        <span class="setting-label">Speciální znaky:</span>
+        <input
+          type="checkbox"
+          id="specialChars"
+          class="checkbox"
+          checked
+          aria-label="Zahrnout speciální znaky"
+        />
+      </label>
+    </div>
+    <!-- Tlačítko pro generování hesla -->
+    <button class="btn-generate" id="generateBtn" onclick="generatePassword()">
+      GENEROVAT
+    </button>
+  </main>
+</body>
+</html>

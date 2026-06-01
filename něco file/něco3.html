@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05 – Pohyb kruhu (dx, dy, update)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a2e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            color: #eee;
+            gap: 12px;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            color: #a0c4ff;
+        }
+
+        .info {
+            font-size: 0.85rem;
+            color: #8899aa;
+        }
+
+        #platno {
+            background-color: #16213e;
+            border: 2px solid #4a90d9;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* Tlačítko spustí jeden krok pohybu */
+        button {
+            margin-top: 8px;
+            padding: 8px 24px;
+            background: #4a90d9;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #357abd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>05 – Pohyb kruhu (dx, dy + update)</h1>
+    <p class="info">Klikni na tlačítko – každé kliknutí posune kruh o jeden snímek.</p>
+
+    <canvas id="platno" width="600" height="400"></canvas>
+
+    <button id="btnKrok">Krok vpřed</button>
+
+    <script>
+        // ── Třída Kruh s podporou pohybu ──────────────────────────────────────
+        class Kruh {
+            /**
+             * @param {number} x      – počáteční x
+             * @param {number} y      – počáteční y
+             * @param {number} radius – poloměr
+             * @param {string} color  – barva
+             * @param {number} dx     – rychlost pohybu v ose x (px / snímek)
+             * @param {number} dy     – rychlost pohybu v ose y (px / snímek)
+             */
+            constructor(x, y, radius, color, dx, dy) {
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.color = color;
+                this.dx = dx;   // změna x za jeden snímek
+                this.dy = dy;   // změna y za jeden snímek
+            }
+
+            /**
+             * Posune střed kruhu o (dx, dy) – výpočet pozice pro příští snímek.
+             */
+            update() {
+                this.x += this.dx;
+                this.y += this.dy;
+            }
+
+            /**
+             * Nakreslí kruh na plátno.
+             * @param {CanvasRenderingContext2D} ctx
+             */
+            draw(ctx) {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
+
+        // ── Hlavní kód ─────────────────────────────────────────────────────────
+        const platno = document.getElementById("platno");
+        const ctx = platno.getContext("2d");
+
+        // Vytvoříme kruh: střed uprostřed plátna, rychlost 4 px/snímek v obou osách
+        const kruh = new Kruh(300, 200, 40, "royalblue", 4, 3);
+
+        // Pomocná funkce: vymaže plátno a překreslí kruh
+        function vykresli() {
+            ctx.clearRect(0, 0, platno.width, platno.height);
+            kruh.draw(ctx);
+
+            // Informace o aktuální poloze
+            ctx.fillStyle = "#8899aa";
+            ctx.font = "13px Arial";
+            ctx.fillText(`x=${Math.round(kruh.x)}  y=${Math.round(kruh.y)}  dx=${kruh.dx}  dy=${kruh.dy}`, 10, platno.height - 10);
+        }
+
+        // Počáteční vykreslení
+        vykresli();
+
+        // Tlačítko: jeden krok = update + překreslení
+        document.getElementById("btnKrok").onclick = () => {
+            kruh.update();
+            vykresli();
+        };
+    </script>
+
+</body>
+
+</html>
