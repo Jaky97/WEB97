@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CSS-only responsive gallery</title>
+<style>
+  :root{
+    --bg:#111318;
+    --panel:#1b1e26;
+    --text:#e9ebf0;
+    --muted:#8a90a2;
+    --gap:10px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:system-ui, -apple-system, "Segoe UI", sans-serif;
+    padding:24px;
+  }
+  h1{font-size:1.1rem; font-weight:600; margin:0 0 4px;}
+  p.note{color:var(--muted); font-size:.85rem; margin:0 0 20px;}
+
+  /* ---------- GRID ---------- */
+  .gallery{
+    display:grid;
+    gap:var(--gap);
+    grid-template-columns:repeat(1,1fr); /* phone default: 1 */
+  }
+  .thumb{
+    position:relative;
+    display:block;
+    aspect-ratio:1/1;         /* forces every tile to the same square size */
+    overflow:hidden;
+    border-radius:6px;
+    background:var(--panel);
+  }
+  .thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;         /* crops instead of squishing */
+    display:block;
+    transition:transform .25s ease;
+  }
+  .thumb:hover img{ transform:scale(1.06); }
+
+  /* Tablet: 3–4 columns */
+  @media (min-width:600px){
+    .gallery{ grid-template-columns:repeat(3,1fr); }
+  }
+  @media (min-width:760px){
+    .gallery{ grid-template-columns:repeat(4,1fr); }
+  }
+  /* Desktop: 5 columns */
+  @media (min-width:1000px){
+    .gallery{ grid-template-columns:repeat(5,1fr); }
+  }
+  /* Large / TV: 6–7 columns */
+  @media (min-width:1500px){
+    .gallery{ grid-template-columns:repeat(6,1fr); }
+  }
+  @media (min-width:1900px){
+    .gallery{ grid-template-columns:repeat(7,1fr); }
+  }
+
+  /* ---------- LIGHTBOX (pure CSS, uses :target) ---------- */
+  .lightbox{
+    display:none;
+    position:fixed; inset:0;
+    background:rgba(0,0,0,.92);
+    align-items:center;
+    justify-content:center;
+    z-index:100;
+    padding:5vh 5vw;
+  }
+  .lightbox:target{ display:flex; }
+  .lightbox img{
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain;
+    border-radius:4px;
+  }
+  .lightbox .close{
+    position:absolute;
+    top:18px; right:26px;
+    width:40px; height:40px;
+    display:flex; align-items:center; justify-content:center;
+    color:#fff;
+    font-size:1.6rem;
+    text-decoration:none;
+    background:rgba(255,255,255,.08);
+    border-radius:50%;
+  }
+  .lightbox .close:hover{ background:rgba(255,255,255,.18); }
+</style>
+</head>
+<body>
+
+<h1>Responsive gallery — no JavaScript</h1>
+<p class="note">Resize the window: 1 col → 3–4 → 5 → 6–7. Click any tile to enlarge, click the × or the dark backdrop-adjacent × to close.</p>
+
+<div class="gallery" id="top">
+  <!-- Each tile is a link to the matching lightbox id -->
+  <a href="#img1" class="thumb"><img src="https://picsum.photos/id/1015/600/600" alt="Image 1" loading="lazy"></a>
+  <a href="#img2" class="thumb"><img src="https://picsum.photos/id/1016/600/600" alt="Image 2" loading="lazy"></a>
+  <a href="#img3" class="thumb"><img src="https://picsum.photos/id/1018/600/600" alt="Image 3" loading="lazy"></a>
+  <a href="#img4" class="thumb"><img src="https://picsum.photos/id/1019/600/600" alt="Image 4" loading="lazy"></a>
+  <a href="#img5" class="thumb"><img src="https://picsum.photos/id/1020/600/600" alt="Image 5" loading="lazy"></a>
+  <a href="#img6" class="thumb"><img src="https://picsum.photos/id/1021/600/600" alt="Image 6" loading="lazy"></a>
+  <a href="#img7" class="thumb"><img src="https://picsum.photos/id/1024/600/600" alt="Image 7" loading="lazy"></a>
+  <a href="#img8" class="thumb"><img src="https://picsum.photos/id/1025/600/600" alt="Image 8" loading="lazy"></a>
+  <a href="#img9" class="thumb"><img src="https://picsum.photos/id/1027/600/600" alt="Image 9" loading="lazy"></a>
+  <a href="#img10" class="thumb"><img src="https://picsum.photos/id/1035/600/600" alt="Image 10" loading="lazy"></a>
+  <a href="#img11" class="thumb"><img src="https://picsum.photos/id/1039/600/600" alt="Image 11" loading="lazy"></a>
+  <a href="#img12" class="thumb"><img src="https://picsum.photos/id/1041/600/600" alt="Image 12" loading="lazy"></a>
+  <a href="#img13" class="thumb"><img src="https://picsum.photos/id/1043/600/600" alt="Image 13" loading="lazy"></a>
+  <a href="#img14" class="thumb"><img src="https://picsum.photos/id/1044/600/600" alt="Image 14" loading="lazy"></a>
+</div>
+
+<!-- One lightbox target per image -->
+<div id="img1" class="lightbox"><a href="#top" class="close">×</a><img src="https://picsum.photos/id/1015/1200/1200" alt=""></div>
+<div id="img2" class="lightbox"><a href="#top" class="close">×</a><img src="https://picsum.photos/id/1016/1200/1200" alt=""></div>
+<div id="img3" class="lightbox"><a href="#top" class="close">×</a><img src="https://picsum.photos/id/1018/1200/1200" alt=""></div>
+<div id="img4" class="lightbox"><a href="#top" class="close">×</a><img src="https://picsum.photos/id/1019/1200/1200" alt=""></div>
+<div id="img5" class="lightbox"><a href="#top" class="close">×</a><img src="https://picsum.photos/id/1020/1200/1200" alt=""></div>
+<div id="img6" class="lightbox"><a href="#top" class="close">×</a><img src="https://picsum.photos/id/1021/1200/1200" alt=""></div>
+<div id="img7" class="lightbox"><a href="#top" class="close">×</a><img src="https://picsum.photos/id/1024/1200/1200" alt=""></div>
+<div id="img8" class="lightbox"><a href="#top" class="close">×</a><img src="https://picsum.photos/id/1025/1200/1200" alt=""></div>
+<div id="img9" class="lightbox"><a href="#top" class="close">×</a><img src="https://picsum.photos/id/1027/1200/1200" alt=""></div>
+<div id="img10" class="lightbox"><a href="#top" class="close">×</a><img src="https://picsum.photos/id/1035/1200/1200" alt=""></div>
+<div id="img11" class="lightbox"><a href="#top" class="close">×</a><img src="https://picsum.photos/id/1039/1200/1200" alt=""></div>
+<div id="img12" class="lightbox"><a href="#top" class="close">×</a><img src="https://picsum.photos/id/1041/1200/1200" alt=""></div>
+<div id="img13" class="lightbox"><a href="#top" class="close">×</a><img src="https://picsum.photos/id/1043/1200/1200" alt=""></div>
+<div id="img14" class="lightbox"><a href="#top" class="close">×</a><img src="https://picsum.photos/id/1044/1200/1200" alt=""></div>
+
+</body>
+</html>
